@@ -1,0 +1,21 @@
+# CUDA wheels supply user-space CUDA libraries; the host supplies the NVIDIA driver.
+FROM python:3.11.12-slim-bookworm
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1 \
+    MPLBACKEND=Agg MPLCONFIGDIR=/tmp/matplotlib \
+    HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 WANDB_MODE=offline \
+    HF_HOME=/cache/huggingface TORCH_HOME=/cache/torch \
+    WANDB_DIR=/results PYTHONPATH=/workspace/upstream/eomt
+WORKDIR /workspace/upstream/eomt
+COPY docker/requirements-common.txt docker/requirements-torch.txt /opt/environment/
+RUN python -m pip install --upgrade pip==25.1.1 setuptools==80.9.0 wheel==0.45.1 \
+    && python -m pip install --index-url https://download.pytorch.org/whl/cu126 -r /opt/environment/requirements-torch.txt \
+    && python -m pip install -r /opt/environment/requirements-common.txt -c /opt/environment/requirements-torch.txt \
+    && python -m pip check
+COPY upstream/eomt/ /workspace/upstream/eomt/
+COPY docker/smoke_test.py /opt/environment/smoke_test.py
+COPY scripts/ /workspace/scripts/
+COPY tests/ /workspace/tests/
+# Builds do not have a GPU. Validate imports and CPU operators here.
+RUN python /opt/environment/smoke_test.py
+CMD ["python", "/opt/environment/smoke_test.py", "--require-cuda"]
+

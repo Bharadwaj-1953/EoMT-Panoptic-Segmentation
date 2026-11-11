@@ -1,0 +1,54 @@
+name: eomt-reproduction
+
+x-runtime: &runtime
+  working_dir: /workspace/upstream/eomt
+  init: true
+  network_mode: none
+  shm_size: "2gb"
+  environment:
+    PYTHONDONTWRITEBYTECODE: "1"
+    HF_HUB_OFFLINE: "1"
+    TRANSFORMERS_OFFLINE: "1"
+    WANDB_MODE: offline
+    WANDB_DIR: /results
+    MPLBACKEND: Agg
+    MPLCONFIGDIR: /tmp/matplotlib
+    HF_HOME: /cache/huggingface
+    TORCH_HOME: /cache/torch
+    EOMT_DATA_DIR: /data
+    EOMT_CHECKPOINTS_DIR: /checkpoints
+    EOMT_RESULTS_DIR: /results
+  volumes:
+    - ./upstream/eomt:/workspace/upstream/eomt:ro
+    - ./data:/data:ro
+    - ./checkpoints:/checkpoints:ro
+    - ./results:/results
+    - ./cache:/cache
+    - ./scripts:/workspace/scripts:ro
+    - ./tests:/workspace/tests:ro
+
+services:
+  cpu:
+    <<: *runtime
+    image: eomt-reproduction:cpu
+    build:
+      context: .
+      dockerfile: Dockerfile.cpu
+    command: ["python", "/opt/environment/smoke_test.py", "--expect-cpu"]
+  cuda:
+    <<: *runtime
+    profiles: ["gpu"]
+    platform: linux/amd64
+    image: eomt-reproduction:cuda
+    build:
+      context: .
+      dockerfile: Dockerfile.cuda
+    command: ["python", "/opt/environment/smoke_test.py", "--require-cuda"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+

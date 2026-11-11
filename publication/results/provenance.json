@@ -1,0 +1,71 @@
+{
+  "source_commit": "aa017c34afbe023de9462b17ae6067b52fef9867",
+  "checkpoint_sha256": "7365b41a8a129afc74c12e5dd7af534146286d02822e4b89b7bbe8ea613ff74d",
+  "scorer_revision": "7bb4655548f98f3fedc07bf37e9040a992b054b0",
+  "metric_scale": "0..100 points",
+  "selection": "pilot: sorted NumPy default_rng(0) sample of 500 without replacement; full: 5000 validation images",
+  "interpretation": "One pretrained checkpoint; fixed-checkpoint sensitivities, not independently trained architectures. Populations overlap; no significance claim. Pilot has 131 active categories; full has 133.",
+  "verification": "Existing independent saved-mask audit; no new scoring performed during publication preparation.",
+  "sources": [
+    {
+      "path": "results/audits/final-20261111-0248/baseline-full/audit_status.json",
+      "sha256": "0190f696a9f31f06cfff8aac92dce0f1892da47d2fc3f1b9b4b3ebeb6dbfe68e"
+    },
+    {
+      "path": "results/audits/final-20261111-0248/baseline-full/verification.json",
+      "sha256": "47d63334be67b4d07de076272a994f3598de87ad920a334c4c433bf513019814"
+    },
+    {
+      "path": "results/audits/final-20261111-0248/mask-full-5000/audit_status.json",
+      "sha256": "acc050f6e84ec819f57240ed464a2ef7121ddf33c1dd9114a6ba14e16fe9d000"
+    },
+    {
+      "path": "results/audits/final-20261111-0248/mask-full-5000/verification.json",
+      "sha256": "a6fc1269fa7bfe1db37c226b96220e43003b4b3acdba29197ecd800778621e9c"
+    },
+    {
+      "path": "results/audits/final-20261111-0248/pilot-baseline/audit_status.json",
+      "sha256": "cf9482229e0d8b8b41fd08d229d5dfd35bf44506f97487556382aae236e7b966"
+    },
+    {
+      "path": "results/audits/final-20261111-0248/pilot-baseline/verification.json",
+      "sha256": "0d79990c490cb14e8a1294ea311e34520e17b28933e898d3f5df8ddf3ed57efd"
+    },
+    {
+      "path": "results/audits/final-20261111-0248/pilot-queries100/audit_status.json",
+      "sha256": "41b4ad5e9a4a7aa56581603496d93adef49305131e7d5ce701cc0867e7ff7f85"
+    },
+    {
+      "path": "results/audits/final-20261111-0248/pilot-queries100/verification.json",
+      "sha256": "43fd07a985e3d51684951443f600e412ce4f2b4bf29afbd7f04465f88a104d99"
+    },
+    {
+      "path": "results/audits/final-20261111-0248/pilot-blocks2/audit_status.json",
+      "sha256": "c15c805e0660b645f5695d67cf295c394a7a959394d1793fefaaf439a3ace326"
+    },
+    {
+      "path": "results/audits/final-20261111-0248/pilot-blocks2/verification.json",
+      "sha256": "afcc21850e8b26a33d0b3c005ec54bf222a8f1ca7460454e388846502a3e867c"
+    },
+    {
+      "path": "results/audits/final-20261111-0248/pilot-mask-full/audit_status.json",
+      "sha256": "691075b125c9452c9847713c602da2e073ff1f88aa02bda3f35efcb12f2b788c"
+    },
+    {
+      "path": "results/audits/final-20261111-0248/pilot-mask-full/verification.json",
+      "sha256": "9216d16dacecc07e66b2b9426976869853ac83dd5ef6e5c25b7a67fe7682643a"
+    },
+    {
+      "path": "results/audits/final-20261111-0248/pilot-mask-zero/audit_status.json",
+      "sha256": "8e080b26ae0a343d7e1184c74add849879b6e57225323a9419df7e609025dfdf"
+    },
+    {
+      "path": "results/audits/final-20261111-0248/pilot-mask-zero/verification.json",
+      "sha256": "514786cd58c9f2908f2c284698a2e458176e4e961190e24a4395e226de1ecc97"
+    },
+    {
+      "path": "results/audits/final-20261111-0248/masking_comparison.csv",
+      "sha256": "8f75f6a05fd0046953b22d9defcfb000b7e0d7b4a1565ca41883dfc38f0640e0"
+    }
+  ]
+}
